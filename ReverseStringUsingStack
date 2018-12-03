@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 50
+
+int top=-1;
+char stack[MAX];
+void push(char val)
+{
+    if(top==MAX-1)
+    {
+        printf("\nStack is full!!\n");
+    }
+    else
+    {
+        top=top+1;
+        stack[top]=val;
+    }
+}
+
+char pop()
+{   char val;
+    if(top==-1)
+    {
+        printf("\nStack is empty!!");
+    }
+    else
+    {   val=stack[top];
+        top=top-1;
+    }
+    return val;
+}
+
+void display()
+{
+    int i;
+
+    if(top==-1)
+    {
+        printf("\nStack is empty!!");
+    }
+    else
+    {
+        printf("Reverse String is\n");
+        while(top!=-1) {
+            printf("%c",pop());
+        }
+    }
+}
+
+
+int main()
+{
+    char ch;
+    printf("Enter the string :\n");
+    scanf("%s",&ch);
+
+    while(ch!='.')
+    {
+        scanf("%s",&ch);
+        push(ch);
+    }
+    display();
+}
+
