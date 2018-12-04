@@ -54,17 +54,17 @@ struct node * oddatfront(struct node*h)
 {
     struct node * temp;
     int change;
-    temp=h;
+    temp=h->ptr;
     while(temp!=NULL)
     {	change=temp->value;
         if(change%2!=0)
         {
             h=deleteatpos(h,change);
             h=insertatfront(h,change);
-            return h;
         }
         temp=temp->ptr;
     }
+    return h;
 }
 
 int main()
