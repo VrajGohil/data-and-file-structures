@@ -1,11 +1,24 @@
 #include<stdio.h>
 #include<stdlib.h>
+int top=-1;
+int stack[10];
 struct node
 {
     int value;
     struct node*ptr;
 
 };
+void push(int val)
+    {
+        top=top+1;
+        stack[top]=val;
+    }
+int pop()
+    {
+        int val=stack[top];
+        top=top-1;
+        return val;
+    }
 
 struct node * insertatfront(struct node*h,int val)
 {
@@ -59,8 +72,8 @@ struct node * oddatfront(struct node*h)
     {	change=temp->value;
         if(change%2!=0)
         {
-            h=deleteatpos(h,change);
-            h=insertatfront(h,change);
+            push(change);
+
         }
         temp=temp->ptr;
     }
@@ -71,6 +84,7 @@ int main()
 {
     struct node*H;
     H=NULL;
+    int val;
     H=insertatfront(H,5);
     H=insertatfront(H,4);
     H=insertatfront(H,3);
@@ -78,5 +92,13 @@ int main()
     H=insertatfront(H,1);
     display(H);
     H=oddatfront(H);
+    while(top!=-1)
+        {
+        val=pop();
+        H=deleteatpos(H,val);
+        H=insertatfront(H,val);
+
+        
+        }
     display(H);
 }
